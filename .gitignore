@@ -82,7 +82,8 @@ fastlane/report.xml
 fastlane/Preview.html
 fastlane/screenshots/**/*.png
 fastlane/test_output
-
+fastlane/metadata/
+.idea/
 vendor/
 
 # Code Injection

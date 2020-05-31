@@ -1,0 +1,37 @@
+
+# For a detailed guide to building and testing on iOS, read the docs:
+# https://circleci.com/docs/2.0/testing-ios/
+
+
+jobs:
+  build:
+    branches:
+      only: master
+
+    macos:
+      xcode: 11.4.1 # Specify the Xcode version to use
+    environment:
+      FASTLANE_LANE: beta
+    steps:
+      - checkout
+      - run: carthage update --platform iOS # Install CocoaPods dependencies
+      - run:
+        name: fastlane
+        command: bundle exec fastlane $FASTLANE_LANE
+      # Collect XML test results data to show in the UI, and save the same XML
+      # files under test-results folder in the Artifacts tab
+      - store_test_results:
+          path: test_output
+      - store_artifacts:
+          path: test_output
+          destination: scan-output
+
+# workflows →　jobsを定義
+workflows:
+version: 2.1
+  build-test-adhoc:
+    jobs:
+      - build:
+          filters:
+            branches:
+              only: master

@@ -1,0 +1,72 @@
+default_platform(:ios)
+
+platform :ios do
+
+  SLACK_URL = ENV["SLACK_URL"]
+  
+  before_all do
+    setup_circle_ci
+  end
+  
+  desc "Description of what the lane does"
+  lane :beta do
+
+    gym
+
+    upload_to_deploygate
+  end
+
+  lane :release do
+
+    if prompt(text: "バージョンを上げますか？", boolean: true) 
+        update_version
+    end
+
+    if prompt(text: "ビルド番号を上げますか？", boolean: true) 
+        increment_build
+    end
+    
+    gym
+
+    deliver
+  end
+  
+  describe "firebase login && pluginの導入が必要"
+  private_lane :upload_to_firebase do 
+    firebase_app_distribution(
+        app: "1:1074101985837:android:01600fb84f8188ee38cea4",
+        testers: "i.kawashima41.dev@gmai.com",
+        release_notes: "Lots of amazing new features to test out!",
+        firebase_cli_path: "/absolute/path/to/firebase/cli/binary"
+    )
+  end
+
+  private_lane :upload_to_deploygate do 
+     deploygate(
+       api_token: ENV["API_TOKEN"],
+       user: "ikawashima41"
+      )
+  end
+  
+  after_all do |lane|
+    if lane == :release
+      slack(
+        slack_url: SLACK_URL,
+        message: "Releaseに成功しました⚡"
+      )
+    else 
+      slack(
+        slack_url: SLACK_URL,
+        message: "テスト配信に成功しました"
+      )
+    end
+  end
+
+  error do |lane, exception|
+    slack(
+      slack_url: SLACK_URL,
+      message: exception.message,
+      success: false
+    )
+  end
+end
