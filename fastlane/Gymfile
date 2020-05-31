@@ -20,6 +20,7 @@ for_lane :beta do
     export_method "ad-hoc"
     export_options(
         method: "ad-hoc",
+        team: "PGP7B8YQAS",
         signingStyle: "manual",
         provisioningProfiles: {
            "com.IichiroKawashima.devmemo" => "DevMemo_Adhoc"

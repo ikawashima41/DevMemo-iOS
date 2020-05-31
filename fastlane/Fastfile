@@ -2,18 +2,22 @@ default_platform(:ios)
 
 platform :ios do
 
-  SLACK_URL = ENV["SLACK_URL"]
-  
   before_all do
-    setup_circle_ci
+    clear_derived_data(derived_data_path: "./DerivedData")
+    sh "rm -rf ../build"
+    
+    if is_ci?
+      setup_circle_ci
+      ENV["SLACK_URL"] = "https://hooks.slack.com/services/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"
+    end
   end
   
   desc "Description of what the lane does"
   lane :beta do
 
-    gym
+    gym()
 
-    upload_to_deploygate
+    upload_to_deploygate()
   end
 
   lane :release do
@@ -26,12 +30,12 @@ platform :ios do
         increment_build
     end
     
-    gym
+    gym()
 
-    deliver
+    deliver()
   end
   
-  describe "firebase login && pluginの導入が必要"
+  desc "firebase login && pluginの導入が必要"
   private_lane :upload_to_firebase do 
     firebase_app_distribution(
         app: "1:1074101985837:android:01600fb84f8188ee38cea4",
@@ -41,32 +45,41 @@ platform :ios do
     )
   end
 
+  lane :test do
+    puts "====================="
+    puts "test lane"
+    puts "====================="
+  end
+  
   private_lane :upload_to_deploygate do 
      deploygate(
-       api_token: ENV["API_TOKEN"],
+       api_token: "28d444d5bd8c2bc34db0eba85896f2b53a907c85",
        user: "ikawashima41"
       )
   end
   
-  after_all do |lane|
-    if lane == :release
-      slack(
-        slack_url: SLACK_URL,
-        message: "Releaseに成功しました⚡"
-      )
-    else 
-      slack(
-        slack_url: SLACK_URL,
-        message: "テスト配信に成功しました"
-      )
-    end
-  end
+  # after_all do |lane|
+  #   if is_ci?
+  #     if lane == :release
+  #       slack(
+  #         message: "Releaseに成功しました⚡"
+  #       )
+  #     else 
+  #       slack(
+  #         message: "テスト配信に成功しました"
+  #       )
+  #     end
+  #   end
+  # end
 
-  error do |lane, exception|
-    slack(
-      slack_url: SLACK_URL,
-      message: exception.message,
-      success: false
-    )
-  end
+  # error do |lane, exception|
+  #   if is_ci?
+  #     slack(
+  #       message: exception.message,
+  #       success: false
+  #     )
+  #   else
+  #     puts exception.message
+  #   end
+  # end
 end

@@ -1,0 +1,75 @@
+version: 2.1
+jobs:
+  build-and-test:
+    macos:
+      xcode: 11.4.1
+    environment:
+      FL_OUTPUT_DIR: output
+      FASTLANE_LANE: beta
+    steps:
+      - checkout
+      - restore_cache:
+          key: v1-gems-{{ checksum "Gemfile.lock" }}
+          path: vendor/bundle
+      - run:
+          name: Bundle install
+          command: bundle check || bundle install
+          environment:
+            BUNDLE_JOBS: 4
+            BUNDLE_RETRY: 3
+      - run:
+          name: Bundle update
+          command: bundle update fastlane
+      - save_cache:
+          key: v1-gems-{{ checksum "Gemfile.lock" }}
+          paths: vendor/bundle
+      - run:
+          name: Fastlane
+          command: bundle exec fastlane ios $FASTLANE_LANE
+      - store_artifacts:
+          path: output
+      - store_test_results:
+          path: output/scan
+
+  beta:
+    macos:
+      xcode: 11.4.1
+    environment:
+      FL_OUTPUT_DIR: output
+      FASTLANE: test
+    steps:
+      - checkout
+      - restore_cache:
+          key: v1-gems-{{ checksum "Gemfile.lock" }}
+          path: vendor/bundle
+      - run:
+          name: Bundle install
+          command: bundle check || bundle install
+          environment:
+            BUNDLE_JOBS: 4
+            BUNDLE_RETRY: 3
+      - run:
+          name: Bundle update
+          command: bundle update fastlane
+      - save_cache:
+          key: v1-gems-{{ checksum "Gemfile.lock" }}
+          paths: vendor/bundle
+      - run:
+          name: Firebase Plugin 
+          command: bundle exec fastlane add_plugin firebase_app_distribution
+      - run:
+          name: Fastlane
+          command: bundle exec fastlane $FASTLANE
+      - store_artifacts:
+          path: output
+
+workflows:
+  build-test-adhoc:
+    jobs:
+      - build-and-test
+      - beta:
+          filters:
+            branches:
+              only: master
+          requires:
+            - build-and-test
