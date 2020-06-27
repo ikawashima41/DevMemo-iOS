@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		5B14B15E247EF09200EC6367 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5B14B15D247EF09200EC6367 /* GoogleService-Info.plist */; };
 		5B14B160247EF9B800EC6367 /* FirebaseMessaging.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B14B15F247EF9B800EC6367 /* FirebaseMessaging.framework */; };
 		5B14B194247FBF8500EC6367 /* FirebaseInstallations.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5BBBB3CE247C6EBE00F4F22D /* FirebaseInstallations.framework */; };
 		5B14B196247FBF8500EC6367 /* GoogleAppMeasurement.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5BBBB3CC247C6EBE00F4F22D /* GoogleAppMeasurement.framework */; };
@@ -31,6 +30,7 @@
 		5B37724F2480658E00C80B9D /* Protobuf.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B37724E2480658E00C80B9D /* Protobuf.framework */; };
 		5B37725424806A2600C80B9D /* CrashReporter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B37725324806A2600C80B9D /* CrashReporter.swift */; };
 		5B37727E2482DD7500C80B9D /* FirestoreService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B37727D2482DD7500C80B9D /* FirestoreService.swift */; };
+		5BA6971724853A8100C7D19E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5BA69715248539A200C7D19E /* GoogleService-Info.plist */; };
 		5BBBB39B247C67DF00F4F22D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BBBB39A247C67DF00F4F22D /* AppDelegate.swift */; };
 		5BBBB39D247C67DF00F4F22D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BBBB39C247C67DF00F4F22D /* SceneDelegate.swift */; };
 		5BBBB3A4247C67E300F4F22D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5BBBB3A3247C67E300F4F22D /* Assets.xcassets */; };
@@ -69,7 +69,7 @@
 
 /* Begin PBXFileReference section */
 		5B14B15C247EF05400EC6367 /* DevMemo.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = DevMemo.entitlements; sourceTree = "<group>"; };
-		5B14B15D247EF09200EC6367 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		5B14B15D247EF09200EC6367 /* GoogleService-Info-release.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info-release.plist"; sourceTree = "<group>"; };
 		5B14B15F247EF9B800EC6367 /* FirebaseMessaging.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FirebaseMessaging.framework; path = Carthage/Build/iOS/FirebaseMessaging.framework; sourceTree = "<group>"; };
 		5B14B1A1247FBF8500EC6367 /* PromisesObjC.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PromisesObjC.framework; path = Carthage/Build/iOS/PromisesObjC.framework; sourceTree = "<group>"; };
 		5B14B1A2247FBF8500EC6367 /* FIRAnalyticsConnector.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FIRAnalyticsConnector.framework; path = Carthage/Build/iOS/FIRAnalyticsConnector.framework; sourceTree = "<group>"; };
@@ -87,6 +87,7 @@
 		5B37724E2480658E00C80B9D /* Protobuf.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Protobuf.framework; path = Carthage/Build/iOS/Protobuf.framework; sourceTree = "<group>"; };
 		5B37725324806A2600C80B9D /* CrashReporter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CrashReporter.swift; sourceTree = "<group>"; };
 		5B37727D2482DD7500C80B9D /* FirestoreService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreService.swift; sourceTree = "<group>"; };
+		5BA69715248539A200C7D19E /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		5BBBB397247C67DF00F4F22D /* DevMemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DevMemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5BBBB39A247C67DF00F4F22D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5BBBB39C247C67DF00F4F22D /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -171,6 +172,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5BA697142485393900C7D19E /* Configuration */ = {
+			isa = PBXGroup;
+			children = (
+				5B14B15D247EF09200EC6367 /* GoogleService-Info-release.plist */,
+			);
+			path = Configuration;
+			sourceTree = "<group>";
+		};
 		5BBBB38E247C67DF00F4F22D = {
 			isa = PBXGroup;
 			children = (
@@ -194,11 +203,12 @@
 			isa = PBXGroup;
 			children = (
 				5B14B15C247EF05400EC6367 /* DevMemo.entitlements */,
+				5BA697142485393900C7D19E /* Configuration */,
 				5BBBB3F6247C73ED00F4F22D /* Service */,
 				5BBBB3F5247C73DE00F4F22D /* Screen */,
 				5BBBB39A247C67DF00F4F22D /* AppDelegate.swift */,
 				5BBBB39C247C67DF00F4F22D /* SceneDelegate.swift */,
-				5B14B15D247EF09200EC6367 /* GoogleService-Info.plist */,
+				5BA69715248539A200C7D19E /* GoogleService-Info.plist */,
 				5BBBB3A3247C67E300F4F22D /* Assets.xcassets */,
 				5BBBB3A5247C67E300F4F22D /* LaunchScreen.storyboard */,
 				5BBBB3A8247C67E300F4F22D /* Info.plist */,
@@ -362,7 +372,7 @@
 				5BBBB3A7247C67E300F4F22D /* LaunchScreen.storyboard in Resources */,
 				5BBBB3A4247C67E300F4F22D /* Assets.xcassets in Resources */,
 				5BBBB3BF247C683700F4F22D /* HomeViewController.xib in Resources */,
-				5B14B15E247EF09200EC6367 /* GoogleService-Info.plist in Resources */,
+				5BA6971724853A8100C7D19E /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

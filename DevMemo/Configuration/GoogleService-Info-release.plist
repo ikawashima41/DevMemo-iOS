@@ -3,21 +3,21 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>489434110524-e0bvj7661me12ac0k1vv02seij78n6q6.apps.googleusercontent.com</string>
+	<string>1074101985837-gj90qnjsutogdr0i726o9vm56d4c7b9b.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.489434110524-e0bvj7661me12ac0k1vv02seij78n6q6</string>
+	<string>com.googleusercontent.apps.1074101985837-gj90qnjsutogdr0i726o9vm56d4c7b9b</string>
 	<key>API_KEY</key>
-	<string>AIzaSyB5DgbuL8OxE-IHzfEo-FySVFX6Oew7TyU</string>
+	<string>AIzaSyAp3YQgdQ38c7mtNmHdqHgJ1h4EnDBeRws</string>
 	<key>GCM_SENDER_ID</key>
-	<string>489434110524</string>
+	<string>1074101985837</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
 	<string>com.IichiroKawashima.devmemo</string>
 	<key>PROJECT_ID</key>
-	<string>devmemo-stg</string>
+	<string>devmemo-549c8</string>
 	<key>STORAGE_BUCKET</key>
-	<string>devmemo-stg.appspot.com</string>
+	<string>devmemo-549c8.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
 	<false></false>
 	<key>IS_ANALYTICS_ENABLED</key>
@@ -29,8 +29,8 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:489434110524:ios:dbbd83a0888ff90cd08139</string>
+	<string>1:1074101985837:ios:c1f0b3ffb75fb11c38cea4</string>
 	<key>DATABASE_URL</key>
-	<string>https://devmemo-stg.firebaseio.com</string>
+	<string>https://devmemo-549c8.firebaseio.com</string>
 </dict>
 </plist>

@@ -15,6 +15,7 @@ platform :ios do
   desc "Description of what the lane does"
   lane :beta do
 
+    match(type: "adhoc", readonly: true)
     gym()
 
     upload_to_deploygate()
@@ -29,6 +30,8 @@ platform :ios do
     if prompt(text: "ビルド番号を上げますか？", boolean: true) 
         increment_build
     end
+
+    match(match(type: "app-store", readonly: true))
     
     gym()
 

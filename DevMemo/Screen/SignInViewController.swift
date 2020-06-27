@@ -38,6 +38,8 @@ final class SignInViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         CrashReporter.shared.sendEvent(error: CrashError.test)
+
+        FirestoreService().testPost()
     }
 
     @objc private func didButtonTapped() {
