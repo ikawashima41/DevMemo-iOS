@@ -57,6 +57,9 @@ jobs:
       - run:
           name: Firebase Plugin 
           command: bundle exec fastlane add_plugin firebase_app_distribution
+      - add_ssh_keys:
+        fingerprints:
+        - "8c:82:39:03:00:1a:3b:07:04:61:c5:b2:33:72:63:35"
       - run:
           name: Fastlane
           command: bundle exec fastlane $FASTLANE
