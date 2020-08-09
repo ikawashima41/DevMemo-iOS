@@ -12,6 +12,7 @@
 		5B10CC2224DFDDD7009DA8CB /* Entity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B10CC2124DFDDD7009DA8CB /* Entity.swift */; };
 		5B10CC2324DFE23B009DA8CB /* GoogleService-Info-release.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5B14B15D247EF09200EC6367 /* GoogleService-Info-release.plist */; };
 		5B10CC2424DFE23E009DA8CB /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5BA69715248539A200C7D19E /* GoogleService-Info.plist */; };
+		5B10CC2924E067F6009DA8CB /* FireStoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B10CC2524E066D5009DA8CB /* FireStoreTests.swift */; };
 		5B14B160247EF9B800EC6367 /* FirebaseMessaging.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B14B15F247EF9B800EC6367 /* FirebaseMessaging.framework */; };
 		5B14B194247FBF8500EC6367 /* FirebaseInstallations.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5BBBB3CE247C6EBE00F4F22D /* FirebaseInstallations.framework */; };
 		5B14B196247FBF8500EC6367 /* GoogleAppMeasurement.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5BBBB3CC247C6EBE00F4F22D /* GoogleAppMeasurement.framework */; };
@@ -75,6 +76,7 @@
 		5B10CC1D24DFDDBC009DA8CB /* MemoRegistrationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoRegistrationViewController.swift; sourceTree = "<group>"; };
 		5B10CC1E24DFDDBC009DA8CB /* MemoRegistrationViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MemoRegistrationViewController.xib; sourceTree = "<group>"; };
 		5B10CC2124DFDDD7009DA8CB /* Entity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Entity.swift; sourceTree = "<group>"; };
+		5B10CC2524E066D5009DA8CB /* FireStoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FireStoreTests.swift; sourceTree = "<group>"; };
 		5B14B15C247EF05400EC6367 /* DevMemo.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = DevMemo.entitlements; sourceTree = "<group>"; };
 		5B14B15D247EF09200EC6367 /* GoogleService-Info-release.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info-release.plist"; sourceTree = "<group>"; };
 		5B14B15F247EF9B800EC6367 /* FirebaseMessaging.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FirebaseMessaging.framework; path = Carthage/Build/iOS/FirebaseMessaging.framework; sourceTree = "<group>"; };
@@ -228,6 +230,7 @@
 			children = (
 				5BBBB3B1247C67E300F4F22D /* DevMemoTests.swift */,
 				5BBBB3B3247C67E300F4F22D /* Info.plist */,
+				5B10CC2524E066D5009DA8CB /* FireStoreTests.swift */,
 			);
 			path = DevMemoTests;
 			sourceTree = "<group>";
@@ -415,7 +418,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if [ \"${CONFIGURATION}\" == \"Release\" ]; then\n  cp \"${PROJECT_DIR}/Configuration/GoogleService-Info-release.plist\" \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.app/GoogleService-Info.plist\"\nelse\n  cp \"${PROJECT_DIR}/Configuration/GoogleService-Info.plist\" \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.app/GoogleService-Info.plist\"\nfi\n";
+			shellScript = "if [ \"${CONFIGURATION}\" == \"Release\" ]; then\n  cp \"${PROJECT_DIR}/DevMemo/Configuration/GoogleService-Info-release.plist\" \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.app/GoogleService-Info.plist\"\nelse\n  cp \"${PROJECT_DIR}/DevMemo/Configuration/GoogleService-Info.plist\" \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.app/GoogleService-Info.plist\"\nfi\n";
 		};
 		5B377252248067EA00C80B9D /* Crashlytics */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -462,6 +465,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5BBBB3B2247C67E300F4F22D /* DevMemoTests.swift in Sources */,
+				5B10CC2924E067F6009DA8CB /* FireStoreTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
