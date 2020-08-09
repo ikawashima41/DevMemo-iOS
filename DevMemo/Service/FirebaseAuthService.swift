@@ -16,18 +16,19 @@ final class FirebaseAuthService {
         return auth.currentUser?.uid
     }
 
-    func login(email: String, password: String, successHandler: @escaping () -> Void, errorHandler: @escaping (Error) -> Void) {
+    func login(email: String, password: String,
+               completion: @escaping (Result<Void, Error>) -> Void) {
         self.auth.createUser(withEmail: email, password: password, completion: { authResult, error in
 
             if let error = error {
-                errorHandler(error)
+                completion(.failure(error))
             }
             guard let email = authResult?.user.email, let uid = authResult?.user.uid else { return }
 
             UserDefaults.standard.set(email, forKey: "email")
             UserDefaults.standard.set(uid, forKey: "uid")
 
-            successHandler()
+            completion(.success(()))
         })
     }
 
