@@ -26,7 +26,13 @@ final class FirestoreService {
                     }
                 }
         }
+    }
 
+    func register(name: String, email: String, uid: String) {
+        dataStore.collection("users").document(uid).setData([
+            "name": name,
+            "email": email
+        ])
     }
 
     func register(_ memo: Memos, index: Int) {

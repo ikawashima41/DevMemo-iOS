@@ -7,6 +7,7 @@
 //
 
 import FirebaseAuth
+import FirebaseFirestore
 
 final class FirebaseAuthService {
 
@@ -16,17 +17,45 @@ final class FirebaseAuthService {
         return auth.currentUser?.uid
     }
 
-    func login(email: String, password: String,
-               completion: @escaping (Result<Void, Error>) -> Void) {
+    func signIn(email: String, password: String, completion: @escaping (Result<Void, Error>) -> Void) {
+
+        auth.signIn(withEmail: email, password: password, completion: { authResult, error in
+            if let error = error {
+                completion(.failure(error))
+            }
+
+            guard let uid = authResult?.user.uid else { return }
+
+            Firestore.firestore().collection("users").document(uid).getDocument { (ref, error) in
+                if let error = error {
+                    completion(.failure(error))
+                }
+
+                completion(.success(()))
+            }
+        })
+    }
+
+    func signUp(email: String, password: String, uid: String? = nil,
+                completion: @escaping (Result<Void, Error>) -> Void) {
         self.auth.createUser(withEmail: email, password: password, completion: { authResult, error in
 
             if let error = error {
                 completion(.failure(error))
             }
-            guard let email = authResult?.user.email, let uid = authResult?.user.uid else { return }
+            guard let email = authResult?.user.email, let id = authResult?.user.uid else { return }
 
-            UserDefaults.standard.set(email, forKey: "email")
-            UserDefaults.standard.set(uid, forKey: "uid")
+            var documentId: String {
+                if let uid = uid {
+                    return uid
+                } else {
+                    return id
+                }
+            }
+
+            Firestore.firestore().collection("users").document(documentId).setData([
+                "email": email
+            ], merge: true)
 
             completion(.success(()))
         })

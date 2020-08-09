@@ -41,7 +41,7 @@ final class SignInViewController: UIViewController {
             let email = emailTextField.text, !email.isEmpty,
             let password = passwordTextField.text, !password.isEmpty else { return }
 
-        service.login(email: email, password: password) { [weak self]  result in
+        service.signIn(email: email, password: password) { [weak self]  result in
 
             switch result {
             case .success:
