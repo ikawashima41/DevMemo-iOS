@@ -18,14 +18,12 @@ final class HomeCollectionViewCell: UICollectionViewCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
     }
 
-    override func prepareForReuse() {
-        super.prepareForReuse()
-    }
 
-    func set(image: String, title: String, description: String) {
-        
+    func set(image: UIImage, title: String, description: String) {
+        imageView.image = image
+        titleLabel.text = title
+        descriptionLabel.text = description
     }
 }

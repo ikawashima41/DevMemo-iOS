@@ -35,28 +35,22 @@ final class SignInViewController: UIViewController {
 
     }
 
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        CrashReporter.shared.sendEvent(error: CrashError.test)
-
-        FirestoreService().testPost()
-    }
-
     @objc private func didButtonTapped() {
 
         guard
             let email = emailTextField.text, !email.isEmpty,
-            let password = passwordTextField.text, !password.isEmpty
-        else {
-            return
-        }
+            let password = passwordTextField.text, !password.isEmpty else { return }
 
-        service.login(email: email, password: password, successHandler: { [weak self] in
-            let vc = HomeViewController()
-            self?.present(vc, animated: true)
+        service.login(email: email, password: password) { [weak self]  result in
 
-        }) { (error) in
-            print(error.localizedDescription)
+            switch result {
+            case .success:
+                let vc = HomeViewController()
+                self?.present(vc, animated: true)
+
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
         }
     }
 }

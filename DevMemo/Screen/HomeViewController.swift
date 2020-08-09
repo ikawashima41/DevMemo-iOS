@@ -18,10 +18,8 @@ final class HomeViewController: UIViewController {
         let dataSource = UICollectionViewDiffableDataSource<Section, Int>(collectionView: collectionView) { (collectionView, indexPath, data) -> UICollectionViewCell? in
 
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HomeCollectionViewCell.reuseIdentifier, for: indexPath) as? HomeCollectionViewCell else {
-              fatalError("Cannot create new cell")
+              return UICollectionViewCell()
             }
-            cell.imageView.image = UIImage(named: "")
-            cell.titleLabel.text = data.description
 
             return cell
         }
