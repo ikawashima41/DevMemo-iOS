@@ -8,6 +8,11 @@
 
 import FirebaseCrashlytics
 
+enum CrashError: Error {
+    case network
+    case test
+}
+
 struct NonFatalError: Error {
 
     var domain: String

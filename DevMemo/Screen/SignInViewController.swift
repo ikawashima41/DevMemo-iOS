@@ -8,11 +8,6 @@
 
 import UIKit
 
-enum CrashError: Error {
-    case network
-    case test
-}
-
 final class SignInViewController: UIViewController {
 
     private let service = FirebaseAuthService()
@@ -21,18 +16,15 @@ final class SignInViewController: UIViewController {
 
     @IBOutlet weak var passwordTextField: UITextField!
 
-    @IBOutlet weak var signInButton: UIButton! {
-        didSet {
-            signInButton.addTarget(self, action: #selector(didButtonTapped), for: .touchUpInside)
-        }
-    }
+    @IBOutlet weak var signInButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        title = "ログイン画面"
         emailTextField.delegate = self
         passwordTextField.delegate = self
-
+        signInButton.addTarget(self, action: #selector(didButtonTapped), for: .touchUpInside)
     }
 
     @objc private func didButtonTapped() {
@@ -62,7 +54,5 @@ extension SignInViewController: UITextFieldDelegate {
 
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         view.endEditing(true)
-
-        fatalError()
     }
 }

@@ -18,24 +18,21 @@ class FireStoreTests: XCTestCase {
     override func tearDown() {
         super.tearDown()
 
-        Firestore.firestore().collection("users").document(uid).delete() { err in
-            if let err = err {
-                print("Error removing document: \(err)")
-            } else {
-                print("Document successfully removed!")
-            }
-        }
+        Firestore.firestore().collection("users").document(uid).delete()
     }
 
     func testGetFirestore() {
 
         let exp = expectation(description: "fetchUsers")
 
-        Firestore.firestore().collection("users").document().getDocument { (ref, error) in
+        Firestore.firestore().collection("users").document().getDocument { (snapShot, error) in
             if let error = error {
                 print(error.localizedDescription)
                 XCTFail()
             }
+            guard let data = snapShot?.data() else { return }
+            print(data)
+
             exp.fulfill()
         }
 
@@ -47,7 +44,7 @@ class FireStoreTests: XCTestCase {
 
         FirebaseAuthService().signUp(email: "test1@gmail.com", password: "0401Tiro", uid: uid) { (result) in
             switch result {
-            case .success(let user):
+            case .success:
                 exp.fulfill()
 
             case .failure(let error):

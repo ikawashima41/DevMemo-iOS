@@ -18,10 +18,19 @@ final class HomeCollectionViewCell: UICollectionViewCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
+
+        contentView.translatesAutoresizingMaskIntoConstraints = false
+
+        NSLayoutConstraint.activate([
+            contentView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            contentView.trailingAnchor.constraint(equalTo: trailingAnchor),
+            contentView.topAnchor.constraint(equalTo: topAnchor),
+            contentView.bottomAnchor.constraint(equalTo: bottomAnchor)
+        ])
     }
 
 
-    func set(image: UIImage, title: String, description: String) {
+    func configure(image: UIImage, title: String, description: String) {
         imageView.image = image
         titleLabel.text = title
         descriptionLabel.text = description

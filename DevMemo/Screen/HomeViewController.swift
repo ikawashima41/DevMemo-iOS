@@ -10,49 +10,69 @@ import UIKit
 
 final class HomeViewController: UIViewController {
 
-    private enum Section {
-        case main
+    @IBOutlet weak var collectionView: UICollectionView!
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
     }
-
-    private lazy var dataSource: UICollectionViewDiffableDataSource<Section, Int> = {
-        let dataSource = UICollectionViewDiffableDataSource<Section, Int>(collectionView: collectionView) { (collectionView, indexPath, data) -> UICollectionViewCell? in
-
-            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HomeCollectionViewCell.reuseIdentifier, for: indexPath) as? HomeCollectionViewCell else {
-              return UICollectionViewCell()
-            }
-
-            return cell
-        }
-        return dataSource
-    }()
-
-    @IBOutlet weak var collectionView: UICollectionView! {
-        didSet {
-            collectionView.register(UINib(nibName: HomeCollectionViewCell.reuseIdentifier, bundle: nil), forCellWithReuseIdentifier: HomeCollectionViewCell.reuseIdentifier)
-            collectionView.collectionViewLayout = configureLayout()
-        }
-    }
-
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        var initialSnapshot = NSDiffableDataSourceSnapshot<Section, Int>()
-        initialSnapshot.appendSections([.main])
-        initialSnapshot.appendItems(Array(1...100))
-
-        dataSource.apply(initialSnapshot, animatingDifferences: false)
+        title = "ホーム画面"
+        setupCollectionView()
     }
 
-    private func configureLayout() -> UICollectionViewCompositionalLayout {
-      let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.2), heightDimension: .fractionalHeight(1.0))
-      let item = NSCollectionLayoutItem(layoutSize: itemSize)
-      item.contentInsets = NSDirectionalEdgeInsets(top: 5, leading: 5, bottom: 5, trailing: 5)
+    func setupCollectionView() {
+        let layout = UICollectionViewFlowLayout()
+        layout.minimumInteritemSpacing = 8
+        collectionView.contentInset = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
+        collectionView.delegate = self
+        collectionView.dataSource = self
+        collectionView.register(UINib(nibName: HomeCollectionViewCell.reuseIdentifier, bundle: nil), forCellWithReuseIdentifier: HomeCollectionViewCell.reuseIdentifier)
+        collectionView.collectionViewLayout = layout
+    }
 
-      let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .fractionalWidth(0.2))
-      let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
 
-      let section = NSCollectionLayoutSection(group: group)
+        collectionView.reloadData()
+    }
+}
 
-      return UICollectionViewCompositionalLayout(section: section)
+extension HomeViewController: UICollectionViewDataSource, UICollectionViewDelegate {
+
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        return 1
+    }
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return 10
+    }
+
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HomeCollectionViewCell.reuseIdentifier, for: indexPath) as? HomeCollectionViewCell else { return UICollectionViewCell() }
+
+        cell.configure(image: UIImage(named: "AppIcon")!, title: "test", description: "description")
+        return cell
+    }
+}
+
+// MARK: UICollectionViewDelegateFlowLayout
+extension HomeViewController: UICollectionViewDelegateFlowLayout {
+
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let prototypeCell = UINib(nibName: "HomeCollectionViewCell", bundle: nil).instantiate(withOwner: nil, options: nil).first as! HomeCollectionViewCell
+        prototypeCell.bounds.size.width = cellWidth
+        prototypeCell.contentView.bounds.size.width = cellWidth
+        return prototypeCell.systemLayoutSizeFitting(UIView.layoutFittingCompressedSize, withHorizontalFittingPriority: .required, verticalFittingPriority: .defaultLow)
+    }
+
+    private var cellWidth: CGFloat {
+        let availableWidth = collectionView.bounds.inset(by: collectionView.adjustedContentInset).width
+        let interColumnSpace = CGFloat(8)
+        let numColumns = CGFloat(3)
+        let numInterColumnSpaces = numColumns - 1
+
+        return ((availableWidth - interColumnSpace * numInterColumnSpaces) / numColumns).rounded(.down)
     }
 }
