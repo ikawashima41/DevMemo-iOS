@@ -4,5 +4,6 @@ storage_mode("git")
 
 type("adhoc") # The default type, can be: appstore, adhoc, enterprise or development
 
+git_url("git@github.com:ikawashima41/Certificates")
 app_identifier("com.IichiroKawashima.devmemo")
 username("i.kawashima41.dev@gmail.com")
