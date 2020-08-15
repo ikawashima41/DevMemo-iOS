@@ -12,15 +12,28 @@ final class HomeViewController: UIViewController {
 
     @IBOutlet weak var collectionView: UICollectionView!
 
+    private var model: [Memos] = []
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
+        FirestoreService().fetch { [weak self] result in
+            switch result {
+            case .success(let memos):
+                self?.model.append(contentsOf: memos)
+
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
+        }
     }
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
         title = "ホーム画面"
         setupCollectionView()
+
     }
 
     func setupCollectionView() {
@@ -31,12 +44,6 @@ final class HomeViewController: UIViewController {
         collectionView.dataSource = self
         collectionView.register(UINib(nibName: HomeCollectionViewCell.reuseIdentifier, bundle: nil), forCellWithReuseIdentifier: HomeCollectionViewCell.reuseIdentifier)
         collectionView.collectionViewLayout = layout
-    }
-
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-
-        collectionView.reloadData()
     }
 }
 
