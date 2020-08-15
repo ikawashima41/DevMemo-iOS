@@ -13,14 +13,6 @@ import FirebaseFirestore
 
 class FireStoreTests: XCTestCase {
 
-    let uid: String = "TestUid"
-
-    override func tearDown() {
-        super.tearDown()
-
-        Firestore.firestore().collection("users").document(uid).delete()
-    }
-
     func testGetFirestore() {
 
         let exp = expectation(description: "fetchUsers")
@@ -36,22 +28,6 @@ class FireStoreTests: XCTestCase {
             exp.fulfill()
         }
 
-        wait(for: [exp], timeout: 3.0)
-    }
-
-    func testPostFirestore() {
-        let exp = expectation(description: "fetchMemos")
-
-        FirebaseAuthService().signUp(email: "test1@gmail.com", password: "0401Tiro", uid: uid) { (result) in
-            switch result {
-            case .success:
-                exp.fulfill()
-
-            case .failure(let error):
-                print(error.localizedDescription)
-                XCTFail()
-            }
-        }
         wait(for: [exp], timeout: 3.0)
     }
 }

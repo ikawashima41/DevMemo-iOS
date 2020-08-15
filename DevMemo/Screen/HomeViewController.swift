@@ -17,7 +17,7 @@ final class HomeViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
-        FirestoreService().fetch { [weak self] result in
+        FirestoreService.fetch { [weak self] result in
             switch result {
             case .success(let memos):
                 self?.model.append(contentsOf: memos)
@@ -33,7 +33,6 @@ final class HomeViewController: UIViewController {
 
         title = "ホーム画面"
         setupCollectionView()
-
     }
 
     func setupCollectionView() {
