@@ -11,13 +11,13 @@ import FirebaseFirestore
 
 final class FirebaseAuthService {
 
-    private let auth = Auth.auth()
+    private static let auth = Auth.auth()
 
-    var currentId: String? {
+    static var currentId: String? {
         return auth.currentUser?.uid
     }
 
-    func signIn(email: String, password: String, completion: @escaping (Result<Void, Error>) -> Void) {
+    static func signIn(email: String, password: String, completion: @escaping (Result<Void, Error>) -> Void) {
 
         auth.signIn(withEmail: email, password: password, completion: { authResult, error in
             if let error = error {
@@ -36,9 +36,9 @@ final class FirebaseAuthService {
         })
     }
 
-    func signUp(email: String, password: String, uid: String? = nil,
+    static func signUp(email: String, password: String, uid: String? = nil,
                 completion: @escaping (Result<Void, Error>) -> Void) {
-        self.auth.createUser(withEmail: email, password: password, completion: { authResult, error in
+        auth.createUser(withEmail: email, password: password, completion: { authResult, error in
 
             if let error = error {
                 completion(.failure(error))
@@ -61,12 +61,31 @@ final class FirebaseAuthService {
         })
     }
 
-    func logout(successHandler: @escaping () -> Void, errorHandler: @escaping (Error) -> Void) {
+    static func logout(successHandler: @escaping () -> Void, errorHandler: @escaping (Error) -> Void) {
         do {
             try auth.signOut()
             successHandler()
         } catch {
             errorHandler(error)
+        }
+    }
+
+    static func fetch(comepltion: @escaping (Result<[User], Error>) -> Void) {
+
+        Firestore.firestore().collection("Users").order(by: "name")
+            .addSnapshotListener { snapshot, error in
+
+                if let error = error {
+                    comepltion(.failure(error))
+                }
+
+                if let snapshot = snapshot {
+                    let users = snapshot.documents.map { user -> User in
+                        let data = user.data()
+                        return User(name: data["name"] as! String, email: data["email"] as! String, iconUrl: data["iconUrl"] as! String, createdAt: data["createdAt"] as! Timestamp, updatedAt: data["updatedAt"] as! Timestamp)
+                    }
+                    comepltion(.success(users))
+                }
         }
     }
 }

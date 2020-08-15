@@ -10,42 +10,51 @@ import FirebaseFirestore
 
 final class FirestoreService {
 
-    private let listener: ListenerRegistration? = nil
+    enum FireStoreQuery {
+        case registerUser(name: String, email: String, uid: String)
+        case registerMemo(memo: Memos, index: Int)
+        case update(memo: Memos, index: Int)
+    }
 
-    private let dataStore = Firestore.firestore()
+    private static let dataStore = Firestore.firestore()
 
-    func fetch(comepltion: @escaping (Result<User, Error>) -> Void) {
+    static func fetch(comepltion: @escaping (Result<[Memos], Error>) -> Void) {
+        dataStore.collection("Memos").order(by: "title")
+            .addSnapshotListener { snapshot, error in
 
-        let memosRefs = dataStore.collection("Users").order(by: "name")
+                if let error = error {
+                    comepltion(.failure(error))
+                }
 
-            .addSnapshotListener { snapshot, e in
                 if let snapshot = snapshot {
-                    snapshot.documents.map { user -> User in
-                        let data = user.data()
-                        return User(name: data["name"] as! String, email: data["email"] as! String, iconUrl: data["iconUrl"] as! String, createdAt: data["createdAt"] as! Timestamp, updatedAt: data["updatedAt"] as! Timestamp)
+                    let memos = snapshot.documents.map { memos -> Memos in
+                        let data = memos.data()
+                        return
+                            Memos(title: data["title"] as! String,
+                                  description: data["description"] as! String,
+                                  isCompleted: data["isCompleted"] as! Bool,
+                                  tagsIDs: data["tagsIDs"] as? [String],
+                                  createdAt: data["createdAt"] as! Timestamp,
+                                  updatedAt: data["updatedAt"] as! Timestamp
+                            )
                     }
+                    comepltion(.success(memos))
                 }
         }
     }
 
-    func register(name: String, email: String, uid: String) {
-        dataStore.collection("users").document(uid).setData([
-            "name": name,
-            "email": email
-        ])
-    }
+    static func setData(_ type: FireStoreQuery) {
 
-    func register(_ memo: Memos, index: Int) {
-        dataStore.collection("memos").document("\(index + 1)").setData([
-            "name": memo.title,
-            "description": memo.description
-        ])
-    }
+        switch type {
+        case .registerUser(let memo, let index, _):
+            dataStore.collection(memo).document(index).setData([
+                "name": "memo.title",
+                "description": "memo.description"
+            ])
 
-    func update(_ memo: Memos, index: Int) {
-        dataStore.collection("memos").document("\(index + 1)").setData([
-            "name": memo.title,
-            "description": memo.description
-        ])
+        default:
+            break
+
+        }
     }
 }
