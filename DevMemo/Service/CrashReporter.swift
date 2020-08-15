@@ -35,12 +35,11 @@ final class CrashReporter {
 
     func sendEvent(error: Error?) {
 
-        crash.setCustomValue("1111111", forKey: "userId")
-        crash.setCustomValue("networkError", forKey: "title")
-        crash.setCustomValue("offlineです", forKey: "message")
-        crash.setCustomValue("追加情報", forKey: "additionalInfo")
+        crash.setCustomValue(String(describing: error?.statusCode), forKey: "statusCode")
+        crash.setCustomValue(error?.localizedDescription ?? "", forKey: "description")
 
-        crash.setUserID("1111")
+        crash.setUserID("STG-test")
+
         if let error = error?.convert() {
             crash.record(error: error)
         }
@@ -50,17 +49,10 @@ final class CrashReporter {
 private extension Error {
     func convert() -> NonFatalError? {
 
-        var userInfo: [String: Any] = [:]
-        userInfo.updateValue("1111111", forKey: "userId")
-        userInfo.updateValue("networkError", forKey: "title")
-        userInfo.updateValue("offlineです", forKey: "message")
-        userInfo.updateValue("追加情報", forKey: "additionalInfo")
-
-
         return NonFatalError(
-            domain: "Test",
-            code: 500,
-            userInfo: userInfo
+            domain: domain,
+            code: statusCode,
+            userInfo: [:]
         )
     }
 
