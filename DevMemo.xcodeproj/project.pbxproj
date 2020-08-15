@@ -60,6 +60,7 @@
 		5BBBB3F4247C713A00F4F22D /* FirebaseAuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BBBB3F3247C713A00F4F22D /* FirebaseAuthService.swift */; };
 		5BBBB3F9247C740F00F4F22D /* HomeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BBBB3F7247C740F00F4F22D /* HomeCollectionViewCell.swift */; };
 		5BBBB3FA247C740F00F4F22D /* HomeCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5BBBB3F8247C740F00F4F22D /* HomeCollectionViewCell.xib */; };
+		5BD72AE424E84C28001ABA7C /* FirebaseAuthTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BD72AE324E84C28001ABA7C /* FirebaseAuthTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -128,6 +129,7 @@
 		5BBBB3F3247C713A00F4F22D /* FirebaseAuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseAuthService.swift; sourceTree = "<group>"; };
 		5BBBB3F7247C740F00F4F22D /* HomeCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCollectionViewCell.swift; sourceTree = "<group>"; };
 		5BBBB3F8247C740F00F4F22D /* HomeCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeCollectionViewCell.xib; sourceTree = "<group>"; };
+		5BD72AE324E84C28001ABA7C /* FirebaseAuthTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseAuthTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -231,6 +233,7 @@
 				5BBBB3B1247C67E300F4F22D /* DevMemoTests.swift */,
 				5BBBB3B3247C67E300F4F22D /* Info.plist */,
 				5B10CC2524E066D5009DA8CB /* FireStoreTests.swift */,
+				5BD72AE324E84C28001ABA7C /* FirebaseAuthTests.swift */,
 			);
 			path = DevMemoTests;
 			sourceTree = "<group>";
@@ -466,6 +469,7 @@
 			files = (
 				5BBBB3B2247C67E300F4F22D /* DevMemoTests.swift in Sources */,
 				5B10CC2924E067F6009DA8CB /* FireStoreTests.swift in Sources */,
+				5BD72AE424E84C28001ABA7C /* FirebaseAuthTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

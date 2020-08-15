@@ -10,8 +10,6 @@ import UIKit
 
 final class SignInViewController: UIViewController {
 
-    private let service = FirebaseAuthService()
-
     @IBOutlet weak var emailTextField: UITextField!
 
     @IBOutlet weak var passwordTextField: UITextField!
@@ -33,7 +31,7 @@ final class SignInViewController: UIViewController {
             let email = emailTextField.text, !email.isEmpty,
             let password = passwordTextField.text, !password.isEmpty else { return }
 
-        service.signIn(email: email, password: password) { [weak self]  result in
+        FirebaseAuthService.signIn(email: email, password: password) { [weak self]  result in
 
             switch result {
             case .success:
