@@ -60,6 +60,7 @@ jobs:
       - add_ssh_keys:
           fingerprints:
             - "e0:bb:f5:45:80:6f:94:df:51:ee:67:b9:dd:d4:8c:ba"
+            - "f8:8d:55:8e:04:67:a9:69:e6:6e:09:4d:e5:ea:fa:89"
       - run:
           name: Fastlane
           command: bundle exec fastlane $FASTLANE
