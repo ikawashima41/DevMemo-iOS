@@ -5,13 +5,13 @@ platform :ios do
   before_all do
     clear_derived_data(derived_data_path: "./DerivedData")
     sh "rm -rf ../build"
-    
+
     if is_ci?
       setup_circle_ci
       ENV["SLACK_URL"] = "https://hooks.slack.com/services/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"
     end
   end
-  
+
   desc "Description of what the lane does"
   lane :beta do
 
@@ -23,23 +23,23 @@ platform :ios do
 
   lane :release do
 
-    if prompt(text: "バージョンを上げますか？", boolean: true) 
+    if prompt(text: "バージョンを上げますか？", boolean: true)
         update_version
     end
 
-    if prompt(text: "ビルド番号を上げますか？", boolean: true) 
+    if prompt(text: "ビルド番号を上げますか？", boolean: true)
         increment_build
     end
 
     match(match(type: "app-store", readonly: true))
-    
+
     gym()
 
     deliver()
   end
-  
+
   desc "firebase login && pluginの導入が必要"
-  private_lane :upload_to_firebase do 
+  private_lane :upload_to_firebase do
     firebase_app_distribution(
         app: "1:1074101985837:android:01600fb84f8188ee38cea4",
         testers: "i.kawashima41.dev@gmai.com",
@@ -53,21 +53,21 @@ platform :ios do
     puts "test lane"
     puts "====================="
   end
-  
-  private_lane :upload_to_deploygate do 
+
+  private_lane :upload_to_deploygate do
      deploygate(
        api_token: "28d444d5bd8c2bc34db0eba85896f2b53a907c85",
        user: "ikawashima41"
       )
   end
-  
+
   # after_all do |lane|
   #   if is_ci?
   #     if lane == :release
   #       slack(
   #         message: "Releaseに成功しました⚡"
   #       )
-  #     else 
+  #     else
   #       slack(
   #         message: "テスト配信に成功しました"
   #       )
