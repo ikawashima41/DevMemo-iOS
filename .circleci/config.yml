@@ -7,6 +7,9 @@ jobs:
       FL_OUTPUT_DIR: output
       FASTLANE_LANE: beta
     steps:
+      - add_ssh_keys:
+          fingerprints:
+            - "e0:bb:f5:45:80:6f:94:df:51:ee:67:b9:dd:d4:8c:ba"
       - checkout
       - restore_cache:
           key: v1-gems-{{ checksum "Gemfile.lock" }}
@@ -38,6 +41,9 @@ jobs:
       FL_OUTPUT_DIR: output
       FASTLANE: test
     steps:
+      - add_ssh_keys:
+          fingerprints:
+            - "e0:bb:f5:45:80:6f:94:df:51:ee:67:b9:dd:d4:8c:ba"
       - checkout
       - restore_cache:
           key: v1-gems-{{ checksum "Gemfile.lock" }}
