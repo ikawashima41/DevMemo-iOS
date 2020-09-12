@@ -5,3 +5,4 @@ type("adhoc") # The default type, can be: appstore, adhoc, enterprise or develop
 
 app_identifier("com.IichiroKawashima.devmemo")
 username("i.kawashima41@gmail.com")
+clone_branch_directly(true)
