@@ -8,7 +8,7 @@
 
 import FirebaseFirestore
 
-final class FirestoreService {
+struct FirestoreService {
 
     enum FireStoreQuery {
         case registerUser(name: String, email: String, uid: String)

@@ -22,9 +22,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         self.window = window
         window.makeKeyAndVisible()
 
-        let vc = SignInViewController()
-        let nc = UINavigationController(rootViewController: vc)
-        window.rootViewController = nc
+        let vc = TabBarViewController()
+        window.rootViewController = vc
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {

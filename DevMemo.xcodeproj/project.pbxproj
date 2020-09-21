@@ -62,7 +62,6 @@
 		5BBBB3FA247C740F00F4F22D /* HomeCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5BBBB3F8247C740F00F4F22D /* HomeCollectionViewCell.xib */; };
 		5BD72AE424E84C28001ABA7C /* FirebaseAuthTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BD72AE324E84C28001ABA7C /* FirebaseAuthTests.swift */; };
 		5BDDE6CD2518652900387E95 /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BDDE6CC2518652900387E95 /* TabBarViewController.swift */; };
-		5BDDE6CF251865D500387E95 /* StoryBoardable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BDDE6CE251865D500387E95 /* StoryBoardable.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -133,7 +132,6 @@
 		5BBBB3F8247C740F00F4F22D /* HomeCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeCollectionViewCell.xib; sourceTree = "<group>"; };
 		5BD72AE324E84C28001ABA7C /* FirebaseAuthTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseAuthTests.swift; sourceTree = "<group>"; };
 		5BDDE6CC2518652900387E95 /* TabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
-		5BDDE6CE251865D500387E95 /* StoryBoardable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryBoardable.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -291,7 +289,6 @@
 				5B10CC1D24DFDDBC009DA8CB /* MemoRegistrationViewController.swift */,
 				5B10CC1E24DFDDBC009DA8CB /* MemoRegistrationViewController.xib */,
 				5BDDE6CC2518652900387E95 /* TabBarViewController.swift */,
-				5BDDE6CE251865D500387E95 /* StoryBoardable.swift */,
 			);
 			path = Screen;
 			sourceTree = "<group>";
@@ -460,7 +457,6 @@
 				5BBBB3C2247C6B5C00F4F22D /* SignInViewController.swift in Sources */,
 				5BDDE6CD2518652900387E95 /* TabBarViewController.swift in Sources */,
 				5BBBB39B247C67DF00F4F22D /* AppDelegate.swift in Sources */,
-				5BDDE6CF251865D500387E95 /* StoryBoardable.swift in Sources */,
 				5BBBB39D247C67DF00F4F22D /* SceneDelegate.swift in Sources */,
 				5B37725424806A2600C80B9D /* CrashReporter.swift in Sources */,
 				5B37727E2482DD7500C80B9D /* FirestoreService.swift in Sources */,

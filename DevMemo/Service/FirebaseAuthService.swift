@@ -9,7 +9,7 @@
 import FirebaseAuth
 import FirebaseFirestore
 
-final class FirebaseAuthService {
+struct FirebaseAuthService {
 
     private static let auth = Auth.auth()
 
@@ -82,7 +82,11 @@ final class FirebaseAuthService {
                 if let snapshot = snapshot {
                     let users = snapshot.documents.map { user -> User in
                         let data = user.data()
-                        return User(name: data["name"] as! String, email: data["email"] as! String, iconUrl: data["iconUrl"] as! String, createdAt: data["createdAt"] as! Timestamp, updatedAt: data["updatedAt"] as! Timestamp)
+                        return User(name: data["name"] as! String,
+                                    email: data["email"] as! String,
+                                    iconUrl: data["iconUrl"] as! String,
+                                    createdAt: data["createdAt"] as! Timestamp,
+                                    updatedAt: data["updatedAt"] as! Timestamp)
                     }
                     comepltion(.success(users))
                 }

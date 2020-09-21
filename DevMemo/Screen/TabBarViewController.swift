@@ -8,13 +8,13 @@
 
 import UIKit
 
-final class TabBarViewController: UITabBarController, StoryBoardable {
+final class TabBarViewController: UITabBarController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        let homeVC = HomeViewController.createInstance()
-        let memoRegisterVC = MemoRegistrationViewController.createInstance()
+        let homeVC = HomeViewController()
+        let memoRegisterVC = MemoRegistrationViewController()
 
         setViewControllers([homeVC, memoRegisterVC], animated: false)
     }

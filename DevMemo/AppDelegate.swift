@@ -53,19 +53,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     private func setupFirebase() {
-        var currentPath: String {
-            let filePath: String?
-            #if DEBUG
-            filePath = Bundle.main.path(forResource: "GoogleService-Info", ofType: "plist")
-            #else
-            filePath = Bundle.main.path(forResource: "GoogleService-Info-release", ofType: "plist")
-            #endif
-            return filePath ?? ""
-        }
-
-        guard !currentPath.isEmpty, let fileopts = FirebaseOptions(contentsOfFile: currentPath) else {
-            return
-        }
 
         #if DEBUG
         FirebaseConfiguration.shared.setLoggerLevel(.debug)
@@ -73,7 +60,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         FirebaseConfiguration.shared.setLoggerLevel(.min)
         #endif
 
-        FirebaseApp.configure(options: fileopts)
+        FirebaseApp.configure()
 
         CrashReporter.shared.sendEvent(error: CrashError.test)
     }
