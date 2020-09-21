@@ -12,7 +12,8 @@ platform :ios do
       create_keychain(
         name: ENV['MATCH_KEYCHAIN_NAME'],
         password: ENV['MATCH_KEYCHAIN_PASSWORD'],
-        timeout: 1800
+        timeout: 1800,
+        unlock: true
       )
     end
   end
