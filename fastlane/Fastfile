@@ -15,10 +15,10 @@ platform :ios do
   desc "Description of what the lane does"
   lane :beta do
 
-    match(type: "adhoc", readonly: true)
-    gym()
+    match(type: "development", readonly: true)
+    ## gym()
 
-    upload_to_deploygate()
+    ## upload_to_deploygate()
   end
 
   lane :release do
