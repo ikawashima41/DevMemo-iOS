@@ -8,10 +8,16 @@
 
 import UIKit
 
-final class MemoRegistrationViewController: UIViewController {
+final class MemoRegistrationViewController: UIViewController, StoryBoardable {
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
+    }
+}
+
+extension MemoRegistrationViewController {
+    static func createInstance() -> MemoRegistrationViewController {
+        return Self.storyboardInstance()
     }
 }

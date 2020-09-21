@@ -8,7 +8,7 @@
 
 import UIKit
 
-final class HomeViewController: UIViewController {
+final class HomeViewController: UIViewController, StoryBoardable {
 
     @IBOutlet weak var collectionView: UICollectionView!
 
@@ -80,5 +80,11 @@ extension HomeViewController: UICollectionViewDelegateFlowLayout {
         let numInterColumnSpaces = numColumns - 1
 
         return ((availableWidth - interColumnSpace * numInterColumnSpaces) / numColumns).rounded(.down)
+    }
+}
+
+extension HomeViewController {
+    static func createInstance() -> HomeViewController {
+        return Self.storyboardInstance()
     }
 }
