@@ -23,9 +23,6 @@ jobs:
       - save_cache:
           key: v1-gems-{{ checksum "Gemfile.lock" }}
           paths: vendor/bundle
-      - run:
-          name: Fastlane
-          command: bundle exec fastlane ios $FASTLANE_LANE
       - store_artifacts:
           path: output
       - store_test_results:
@@ -54,9 +51,6 @@ jobs:
       - save_cache:
           key: v1-gems-{{ checksum "Gemfile.lock" }}
           paths: vendor/bundle
-      - run:
-          name: Firebase Plugin 
-          command: bundle exec fastlane add_plugin firebase_app_distribution
       - add_ssh_keys:
           fingerprints:
             - "e0:bb:f5:45:80:6f:94:df:51:ee:67:b9:dd:d4:8c:ba"
