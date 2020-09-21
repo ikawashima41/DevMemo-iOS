@@ -9,6 +9,11 @@ platform :ios do
     if is_ci?
       setup_circle_ci
       ENV["SLACK_URL"] = "https://hooks.slack.com/services/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"
+      create_keychain(
+        name: ENV['MATCH_KEYCHAIN_NAME'],
+        password: ENV['MATCH_KEYCHAIN_PASSWORD'],
+        timeout: 1800
+      )
     end
   end
 
