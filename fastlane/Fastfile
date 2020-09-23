@@ -24,7 +24,6 @@ platform :ios do
   lane :beta do
 
     match(
-      type: "development",
       keychain_name: ENV['MATCH_KEYCHAIN_NAME'],
       keychain_password: ENV['MATCH_KEYCHAIN_PASSWORD'],
       readonly: true

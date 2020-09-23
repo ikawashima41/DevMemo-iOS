@@ -19,13 +19,4 @@ for_lane :beta do
     output_directory "./build/ipa/"
     output_name "DevMemo.ipa"
     export_method "ad-hoc"
-    export_options(
-        method: "ad-hoc",
-        team: "PGP7B8YQAS",
-        signingStyle: "manual",
-        provisioningProfiles: {
-           "com.IichiroKawashima.devmemo" => "DevMemo_Adhoc"
-        },
-        signingCertificate: "Apple Distribution"
-    )
 end
