@@ -6,6 +6,12 @@ platform :ios do
     clear_derived_data(derived_data_path: "./DerivedData")
     sh "rm -rf ../build"
 
+    carthage(
+      command: "bootstrap",
+      platform: "iOS",
+      configuration: "Debug"
+    )
+
     if is_ci?
       setup_circle_ci
       ENV["SLACK_URL"] = "https://hooks.slack.com/services/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"

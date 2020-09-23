@@ -2,7 +2,7 @@ version: 2.1
 jobs:
   build-and-test:
     macos:
-      xcode: 11.7.0
+      xcode: 11.4.1
     environment:
       FL_OUTPUT_DIR: output
     steps:
@@ -29,7 +29,7 @@ jobs:
 
   beta:
     macos:
-      xcode: 11.7.0
+      xcode: 11.4.1
     environment:
       FL_OUTPUT_DIR: output
       FASTLANE: beta
