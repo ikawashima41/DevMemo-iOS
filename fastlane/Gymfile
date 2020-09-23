@@ -15,6 +15,7 @@ include_bitcode false
 
 for_lane :beta do
     configuration "Debug"
+    scheme "DevMemo"
     output_directory "./build/ipa/"
     output_name "DevMemo.ipa"
     export_method "ad-hoc"
