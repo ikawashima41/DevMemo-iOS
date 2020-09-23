@@ -28,7 +28,7 @@ platform :ios do
       keychain_password: ENV['MATCH_KEYCHAIN_PASSWORD'],
       readonly: true
     )
-    gym
+    gym(xcargs: "-allowProvisioningUpdates")
     upload_to_firebase
     ## upload_to_deploygate()
   end
