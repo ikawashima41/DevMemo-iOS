@@ -5,7 +5,7 @@ jobs:
       xcode: 11.4.1
     environment:
       FL_OUTPUT_DIR: output
-      FASTLANE_LANE: beta
+      FASTLANE_LANE: test
     steps:
       - checkout
       - restore_cache:
@@ -19,7 +19,7 @@ jobs:
             BUNDLE_RETRY: 3
       - run:
           name: Bundle update
-          command: bundle update fastlane
+          command: bundle update fastlane test
       - save_cache:
           key: v1-gems-{{ checksum "Gemfile.lock" }}
           paths: vendor/bundle
