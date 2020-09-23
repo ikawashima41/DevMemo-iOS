@@ -33,7 +33,7 @@ jobs:
       xcode: 11.4.1
     environment:
       FL_OUTPUT_DIR: output
-      FASTLANE: test
+      FASTLANE: beta
     steps:
       - checkout
       - restore_cache:
