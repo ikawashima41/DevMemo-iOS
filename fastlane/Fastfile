@@ -21,7 +21,11 @@ platform :ios do
   desc "Description of what the lane does"
   lane :beta do
 
-    match(type: "development", readonly: true)
+    match(type: "development",
+          keychain_name: ENV['MATCH_KEYCHAIN_NAME'],
+          keychain_password: ENV['MATCH_KEYCHAIN_PASSWORD'],
+          readonly: true
+        )
     gym
     upload_to_firebase
     ## upload_to_deploygate()
@@ -50,7 +54,7 @@ platform :ios do
         app: "1:1074101985837:android:01600fb84f8188ee38cea4",
         testers: "i.kawashima41.dev@gmai.com",
         ipa_path: "./build/ipa/DevMemo.ipa",
-        firebase_cli_path: "/usr/local/bin/firebase"
+        firebase_cli_path: "./node_modules/.bin/firebase"
     )
   end
 
