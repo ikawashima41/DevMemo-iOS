@@ -52,7 +52,7 @@ jobs:
           paths: vendor/bundle
       - add_ssh_keys:
           fingerprints:
-            - "e0:bb:f5:45:80:6f:94:df:51:ee:67:b9:dd:d4:8c:ba"
+            - "a5:d7:ae:3b:25:d7:8d:23:75:e2:4f:e5:a5:58:70:e5"
             - "f8:8d:55:8e:04:67:a9:69:e6:6e:09:4d:e5:ea:fa:89"
       - run:
           name: Install Firebase Tools
