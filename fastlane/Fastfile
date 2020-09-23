@@ -22,8 +22,8 @@ platform :ios do
   lane :beta do
 
     match(type: "development", readonly: true)
-    ## gym()
-
+    gym
+    upload_to_firebase
     ## upload_to_deploygate()
   end
 
@@ -39,9 +39,9 @@ platform :ios do
 
     match(match(type: "app-store", readonly: true))
 
-    gym()
+    gym
 
-    deliver()
+    deliver
   end
 
   desc "firebase login && pluginの導入が必要"
@@ -49,8 +49,8 @@ platform :ios do
     firebase_app_distribution(
         app: "1:1074101985837:android:01600fb84f8188ee38cea4",
         testers: "i.kawashima41.dev@gmai.com",
-        release_notes: "Lots of amazing new features to test out!",
-        firebase_cli_path: "/absolute/path/to/firebase/cli/binary"
+        ipa_path: "./build/ipa/DevMemo.ipa",
+        firebase_cli_path: "/usr/local/bin/firebase"
     )
   end
 
