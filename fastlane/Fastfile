@@ -28,7 +28,7 @@ platform :ios do
       keychain_password: ENV['MATCH_KEYCHAIN_PASSWORD'],
       readonly: true
     )
-    gym(xcargs: "-allowProvisioningUpdates")
+    gym(scheme: "DevMemo", xcargs: "-allowProvisioningUpdates")
     upload_to_firebase
     ## upload_to_deploygate()
   end
@@ -43,7 +43,7 @@ platform :ios do
         increment_build
     end
 
-    match(match(type: "app-store", readonly: true))
+    match(type: "app-store", readonly: true)
 
     gym
 
