@@ -60,6 +60,7 @@ jobs:
       - run:
           name: Fastlane
           command: bundle exec fastlane $FASTLANE
+          no_output_timeout: 50m
       - store_artifacts:
           path: output
 
