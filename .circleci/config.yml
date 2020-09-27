@@ -35,6 +35,9 @@ jobs:
       FASTLANE: beta
     steps:
       - checkout
+      - run:
+          name: ruby version
+          command: echo 'chruby ruby-2.6' >> ~/.bash_profile
       - restore_cache:
           key: v1-gems-{{ checksum "Gemfile.lock" }}
           path: vendor/bundle
@@ -55,8 +58,8 @@ jobs:
             - "a5:d7:ae:3b:25:d7:8d:23:75:e2:4f:e5:a5:58:70:e5"
             - "f8:8d:55:8e:04:67:a9:69:e6:6e:09:4d:e5:ea:fa:89"
       - run:
-          name: Install Firebase Tools
-          command: npm install firebase-tools
+          name: firebase tools
+          command: curl -sL https://firebase.tools | bash
       - run:
           name: Fastlane
           command: bundle exec fastlane $FASTLANE
