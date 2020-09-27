@@ -6,6 +6,8 @@ platform :ios do
     clear_derived_data(derived_data_path: "./DerivedData")
     sh "rm -rf ../build"
 
+    ENV["SLACK_URL"] = "https://hooks.slack.com/services/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"
+
     carthage(
       command: "bootstrap",
       platform: "iOS",
@@ -14,7 +16,7 @@ platform :ios do
 
     if is_ci?
       setup_circle_ci
-      ENV["SLACK_URL"] = "https://hooks.slack.com/services/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"
+
       create_keychain(
         name: ENV['MATCH_KEYCHAIN_NAME'],
         password: ENV['MATCH_KEYCHAIN_PASSWORD'],
@@ -35,10 +37,9 @@ platform :ios do
       readonly: true
     )
     gym
-    upload_to_firebase
+    #upload_to_firebase
 
-    ##upload_symbols_to_crashlytics
-    ## upload_to_deploygate()
+    upload_symbols_to_crashlytics(gsp_path: "./DevMemo/Configuration/GoogleService-Info.plist")
   end
 
   lane :release do
@@ -60,7 +61,7 @@ platform :ios do
 
   lane :dsym do
     download_dsyms(version: 'latest')
-    upload_symbols_to_crashlytics(gsp_path: "[path to GoogleService-Info.plist]")
+    upload_symbols_to_crashlytics(gsp_path: "./DevMemo/GoogleService-Info.plist") # [path to GoogleService-Info.plist]
     clean_build_artifacts
   end
 
@@ -75,9 +76,7 @@ platform :ios do
   end
 
   lane :test do
-    puts "====================="
-    puts "test lane"
-    puts "====================="
+    scan
   end
 
   private_lane :upload_to_deploygate do
@@ -87,28 +86,28 @@ platform :ios do
       )
   end
 
-  # after_all do |lane|
-  #   if is_ci?
-  #     if lane == :release
-  #       slack(
-  #         message: "Releaseに成功しました⚡"
-  #       )
-  #     else
-  #       slack(
-  #         message: "テスト配信に成功しました"
-  #       )
-  #     end
-  #   end
-  # end
+  after_all do |lane|
+    if is_ci?
+      if lane == :release
+        slack(
+          message: "Releaseに成功しました⚡"
+        )
+      else
+        slack(
+          message: "テスト配信に成功しました"
+        )
+      end
+    end
+  end
 
-  # error do |lane, exception|
-  #   if is_ci?
-  #     slack(
-  #       message: exception.message,
-  #       success: false
-  #     )
-  #   else
-  #     puts exception.message
-  #   end
-  # end
+  error do |lane, exception|
+    if is_ci?
+      slack(
+        message: exception.message,
+        success: false
+      )
+    else
+      puts exception.message
+    end
+  end
 end
