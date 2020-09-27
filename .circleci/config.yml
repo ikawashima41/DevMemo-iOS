@@ -61,9 +61,6 @@ jobs:
           name: firebase tools
           command: curl -sL https://firebase.tools | bash
       - run:
-          name: update plugin
-          command: fastlane update_plugins
-      - run:
           name: Fastlane
           command: bundle exec fastlane $FASTLANE
           no_output_timeout: 20m
