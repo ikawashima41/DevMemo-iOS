@@ -1,12 +1,17 @@
 version: 2.1
 jobs:
-  build-and-test:
+  test:
     macos:
-      xcode: 11.4.1
+      xcode: 12.0.0
+    working_directory: /Users/distiller/project
     environment:
       FL_OUTPUT_DIR: output
+    shell: /bin/bash --login -o pipefail
     steps:
       - checkout
+      - run:
+          name: Ruby バージョンの設定
+          command: echo 'chruby ruby-2.6' >> ~/.bash_profile # 2.6 を特定の Ruby バージョンに置き換え
       - restore_cache:
           key: v1-gems-{{ checksum "Gemfile.lock" }}
           path: vendor/bundle
@@ -29,10 +34,12 @@ jobs:
 
   beta:
     macos:
-      xcode: 11.4.1
+      xcode: 12.0.0
+    working_directory: /Users/distiller/project
     environment:
       FL_OUTPUT_DIR: output
       FASTLANE: beta
+    shell: /bin/bash --login -o pipefail
     steps:
       - checkout
       - run:
@@ -63,16 +70,22 @@ jobs:
       - run:
           name: Fastlane
           command: bundle exec fastlane $FASTLANE
-          no_output_timeout: 20m
+          no_output_timeout: 15m
       - store_artifacts:
-          path: DevMemo.app.dSYM.zip
+          path: output/DevMemo.app.dSYM.zip
       - store_artifacts:
-          path: DevMemo.ipa
+          path: output/DevMemo.ipa
 
 workflows:
-  build-test-adhoc:
+  build-adhoc:
     jobs:
       - beta:
           filters:
             branches:
               only: master
+  unittest:
+    jobs:
+      - test:
+        filters:
+          branches:
+            only: master
