@@ -37,9 +37,9 @@ platform :ios do
       readonly: true
     )
     gym
-    #upload_to_firebase
 
-    #upload_symbols_to_crashlytics(gsp_path: "./DevMemo/Configuration/GoogleService-Info.plist")
+    upload_to_firebase
+    upload_symbols_to_crashlytics(gsp_path: "./DevMemo/Configuration/GoogleService-Info.plist")
   end
 
   lane :release do

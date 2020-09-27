@@ -65,7 +65,9 @@ jobs:
           command: bundle exec fastlane $FASTLANE
           no_output_timeout: 20m
       - store_artifacts:
-          path: output/DevMemo.ipa
+          path: DevMemo.app.dSYM.zip
+      - store_artifacts:
+          path: DevMemo.ipa
 
 workflows:
   build-test-adhoc:
