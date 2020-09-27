@@ -11,7 +11,7 @@
 # sdk("iphoneos9.0")
 
 clean true
-include_bitcode false
+include_bitcode true
 
 for_lane :beta do
     configuration "Debug"
