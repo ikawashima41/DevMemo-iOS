@@ -36,6 +36,8 @@ platform :ios do
     )
     gym
     upload_to_firebase
+
+    ##upload_symbols_to_crashlytics
     ## upload_to_deploygate()
   end
 
@@ -54,6 +56,12 @@ platform :ios do
     gym
 
     deliver
+  end
+
+  lane :dsym do
+    download_dsyms(version: 'latest')
+    upload_symbols_to_crashlytics(gsp_path: "[path to GoogleService-Info.plist]")
+    clean_build_artifacts
   end
 
   desc "firebase login && pluginの導入が必要"
