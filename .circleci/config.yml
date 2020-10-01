@@ -95,3 +95,4 @@ workflows:
   build-test:
     jobs:
       - danger
+      - beta
