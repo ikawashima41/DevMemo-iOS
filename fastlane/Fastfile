@@ -62,11 +62,18 @@ platform :ios do
   desc "Run UnitTest"
   lane :test do |options|
     scan(configuration: "development")
+
+    danger(
+      danger_id: "unit-tests",
+      dangerfile: "DangerFile",
+      github_api_token: ENV["GITHUB_API_TOKEN"],
+      verbose: true
+    )
   end
 
   lane :dsym do
     download_dsyms(version: 'latest')
-    upload_symbols_to_crashlytics(gsp_path: "./DevMemo/GoogleService-Info.plist") # [path to GoogleService-Info.plist]
+    upload_symbols_to_crashlytics(gsp_path: "./DevMemo/configration/GoogleService-Info.plist") # [path to GoogleService-Info.plist]
     clean_build_artifacts
   end
 

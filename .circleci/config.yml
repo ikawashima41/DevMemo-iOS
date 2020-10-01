@@ -1,6 +1,6 @@
 version: 2.1
 jobs:
-  test:
+  unit-test:
     macos:
       xcode: 12.0.0
     working_directory: /Users/distiller/project
@@ -79,12 +79,6 @@ jobs:
           path: output/DevMemo.app.dSYM.zip
       - store_artifacts:
           path: output/DevMemo.ipa
-  danger:
-    docker:
-      - image: dantoml/danger:latest
-    steps:
-      - checkout
-      - run: danger
 workflows:
   build-adhoc:
     jobs:
@@ -94,5 +88,4 @@ workflows:
               only: master
   build-test:
     jobs:
-      - danger
-      - test
+      - unit-test
