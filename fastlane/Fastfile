@@ -61,7 +61,6 @@ platform :ios do
 
   desc "Run UnitTest"
   lane :unittest do |options|
-    scan(configuration: "development")
 
     danger(
       danger_id: "unit-tests",
@@ -69,6 +68,9 @@ platform :ios do
       github_api_token: ENV["GITHUB_API_TOKEN"],
       verbose: true
     )
+
+    scan(configuration: "Debug")
+
   end
 
   lane :dsym do
