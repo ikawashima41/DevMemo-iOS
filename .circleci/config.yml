@@ -79,6 +79,13 @@ jobs:
           path: output/DevMemo.app.dSYM.zip
       - store_artifacts:
           path: output/DevMemo.ipa
+  danger:
+    docker:
+      - image: dantoml/danger:latest
+    steps:
+      - checkout
+      - run: gem install danger-todoist
+      - run: danger
 workflows:
   build-adhoc:
     jobs:
@@ -88,4 +95,4 @@ workflows:
               only: master
   build-test:
     jobs:
-      - unit-test
+      - danger
