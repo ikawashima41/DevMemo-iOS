@@ -6,6 +6,7 @@ jobs:
     working_directory: /Users/distiller/project
     environment:
       FL_OUTPUT_DIR: output
+      FASTLANE: test
     shell: /bin/bash --login -o pipefail
     steps:
       - checkout
@@ -24,6 +25,9 @@ jobs:
       - run:
           name: Bundle update
           command: bundle update fastlane
+      - run:
+          name: Fastlane
+          command: bundle exec fastlane $FASTLANE
       - save_cache:
           key: v1-gems-{{ checksum "Gemfile.lock" }}
           paths: vendor/bundle
@@ -91,3 +95,4 @@ workflows:
   build-test:
     jobs:
       - danger
+      - test

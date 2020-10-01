@@ -59,6 +59,11 @@ platform :ios do
     deliver
   end
 
+  desc "Run UnitTest"
+  lane :test do |options|
+    scan(configuration: "development")
+  end
+
   lane :dsym do
     download_dsyms(version: 'latest')
     upload_symbols_to_crashlytics(gsp_path: "./DevMemo/GoogleService-Info.plist") # [path to GoogleService-Info.plist]
