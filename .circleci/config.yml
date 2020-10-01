@@ -84,7 +84,6 @@ jobs:
       - image: dantoml/danger:latest
     steps:
       - checkout
-      - run: gem install danger-todoist
       - run: danger
 workflows:
   build-adhoc:
