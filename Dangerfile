@@ -16,5 +16,5 @@ warn("UIレビューの時はスクリーンショットを添付してね！�
 github.dismiss_out_of_range_messages
 
 # Swiftlint
-swiftlint.config_file = '.swiftlint.yml'
-swiftlint.lint_files inline_mode: true
+# swiftlint.config_file = '.swiftlint.yml'
+# swiftlint.lint_files inline_mode: true

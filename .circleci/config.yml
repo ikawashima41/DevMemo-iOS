@@ -85,7 +85,6 @@ jobs:
     steps:
       - checkout
       - run: gem install danger-todoist
-      - run: gem install danger-swiftlint
       - run: danger
 workflows:
   build-adhoc:
