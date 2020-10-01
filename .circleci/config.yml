@@ -75,7 +75,12 @@ jobs:
           path: output/DevMemo.app.dSYM.zip
       - store_artifacts:
           path: output/DevMemo.ipa
-
+  danger:
+    docker:
+      - image: dantoml/danger:latest
+    steps:
+      - checkout
+      - run: danger
 workflows:
   build-adhoc:
     jobs:
@@ -83,9 +88,6 @@ workflows:
           filters:
             branches:
               only: master
-  unittest:
+  build-test:
     jobs:
-      - test:
-        filters:
-          branches:
-            only: master
+      - danger
