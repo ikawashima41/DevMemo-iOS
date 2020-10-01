@@ -60,7 +60,7 @@ platform :ios do
   end
 
   desc "Run UnitTest"
-  lane :test do |options|
+  lane :unittest do |options|
     scan(configuration: "development")
 
     danger(
