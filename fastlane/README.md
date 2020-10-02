@@ -26,6 +26,11 @@ Description of what the lane does
 fastlane ios release
 ```
 
+### ios unittest
+```
+fastlane ios unittest
+```
+Run UnitTest
 ### ios dsym
 ```
 fastlane ios dsym
